@@ -10,7 +10,7 @@ const jwt_secret = "uhfoiuhweufhp9(87439864__SDKJFBIWBHFFH;jhkj";
 loginRouter.post("/", async (req, res) => {
   const { email, password } = req.body;
   const loginUser = await User.findOne({ email });
-  console.log(loginUser);
+  // console.log(loginUser);
   if (!loginUser) {
     return res.json({ error: "User Not Found " });
   }

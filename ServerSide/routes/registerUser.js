@@ -7,7 +7,7 @@ const registerRouter = express.Router();
 //Register User -->
 
 registerRouter.post("/", async (req, res) => {
-  const { fullname, email, username, password } = req.body;
+  const { fullname, email, username, password, usertype } = req.body;
   const encryptedPassword = await hash(password, 5);
   try {
     const oldUser = await User.findOne({ email });
@@ -20,6 +20,7 @@ registerRouter.post("/", async (req, res) => {
       username,
       password: encryptedPassword,
       blogs: [],
+      usertype,
     });
     res.json({ createdUser });
   } catch (error) {
