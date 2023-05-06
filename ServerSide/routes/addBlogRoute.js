@@ -30,6 +30,7 @@ addBlogRouter.post("/", async (req, res, err) => {
     const session = await mongoose.startSession();
     session.startTransaction();
     await blog.save({ session });
+    await blog.populate("user");
     existingUser.blogs.push(blog);
     await existingUser.save({ session });
     await session.commitTransaction();
